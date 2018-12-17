@@ -14,16 +14,8 @@ student = [
 # And then print them
 puts "The students of Villains Academy"
 puts "--------------------------------"
-puts student[0]
-puts student[1]
-puts student[2]
-puts student[3]
-puts student[4]
-puts student[5]
-puts student[6]
-puts student[7]
-puts student[8]
-puts student[9]
-puts student[10]
+student.each do|student|
+  puts student
+end
 # finally, we print the total number of students
 puts "Overall, we have #{student.count} great students"
