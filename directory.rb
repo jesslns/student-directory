@@ -20,16 +20,16 @@ def print_header
   puts "--------------------------------".center(50)
 end
 
-def print(students)
+def print_students_list
   i = 0
-  until i == students.length - 1 do
-    puts "#{students[i][:name]} (#{students[i][:cohort]} cohort)".center(50)
+  until i == @students.length do
+    puts "#{@students[i][:name]} (#{@students[i][:cohort]} cohort)".center(50)
     i +=1
   end
 end
 
-def print_footer(names)
-puts "Overall, we have #{names.count} great students".center(50)
+def print_footer
+puts "Overall, we have #{@students.count} great students".center(50)
 end
 
 def print_menu
@@ -40,24 +40,27 @@ end
 
 def show_students
   print_header
-  print(@students)
-  print_footer(@students)
+  print_students_list
+  print_footer
+end
+
+def process(selection)
+  case selection
+    when "1"
+      input_students
+    when "2"
+      show_students   ##### last student is not printed out
+    when "9"
+      exit
+    else
+      puts "I don't know what you meant, try again"
+  end
 end
 
 def interactive_menu
   loop do
     print_menu
-    selection = gets.chomp
-    case selection
-      when "1"
-        input_students
-      when "2"
-        show_students
-      when "9"
-        exit
-      else
-        puts "I don't know what you meant, try again"
-    end
+    process(gets.chomp)
   end
 end
 
