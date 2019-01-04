@@ -43,7 +43,7 @@ def show_students
 end
 
 def save_students
-  file = File.open("students.csv", "w")
+  file = File.open(@student_file, "w")
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
     csv_line = student_data.join(",")
@@ -52,7 +52,7 @@ def save_students
   file.close
 end
 
-def load_students(filename = "students.csv")
+def load_students(filename = @student_file)
   file = File.open(filename, "r")
   file.readlines.each do |line|
   @name, cohort = line.chomp.split(',')
@@ -91,9 +91,13 @@ def process(selection)
       show_students
       puts "\n Students were listed successfully."
     when "3"
+      puts "Please enter the file name to save as and hit return."
+      @student_file= STDIN.gets.chomp
       save_students
       puts "\n Student information saved successfully."
     when "4"
+      puts "Please enter the file name that you want to load and hit return."
+      @student_file= STDIN.gets.chomp
       load_students
       puts "\n Students data were loaded successfully"
     when "9"
