@@ -4,15 +4,19 @@ def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
   # get the first names
-  name = STDIN.gets.chomp
+  @name = STDIN.gets.chomp
   # while the name is not empty, repeat this code
-  until name.empty? do
+  until @name.empty? do
     # add student hash to the array
-    @students << {name: name, cohort: :november}
+    hash_to_array
     puts "now we have #{@students.count} students"
     # get another name from the user
-    name = STDIN.gets.chomp
+    @name = STDIN.gets.chomp
   end
+end
+
+def hash_to_array (array = @students)
+  array << {name: @name, cohort: :november}
 end
 
 def print_header
@@ -51,8 +55,8 @@ end
 def load_students(filename = "students.csv")
   file = File.open(filename, "r")
   file.readlines.each do |line|
-  name, cohort = line.chomp.split(',')
-    @students << {name: name, cohort: cohort.to_sym}
+  @name, cohort = line.chomp.split(',')
+  hash_to_array
   end
   file.close
 end
