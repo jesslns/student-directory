@@ -43,22 +43,22 @@ def show_students
 end
 
 def save_students
-  file = File.open(@student_file, "w")
-  @students.each do |student|
-    student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
+  File.open(@student_file, "w") do |file|
+    @students.each do |student|
+      student_data = [student[:name], student[:cohort]]
+      csv_line = student_data.join(",")
+      file.puts csv_line
+    end
   end
-  file.close
 end
 
 def load_students(filename = @student_file)
-  file = File.open(filename, "r")
-  file.readlines.each do |line|
-  @name, cohort = line.chomp.split(',')
-  hash_to_array
+  File.open(filename, "r") do |file|
+    file.readlines.each do |line|
+      @name, cohort = line.chomp.split(',')
+      hash_to_array
+    end
   end
-  file.close
 end
 
 def try_load_students
@@ -91,7 +91,7 @@ def process(selection)
       show_students
       puts "\n Students were listed successfully."
     when "3"
-      puts "Please enter the file name to save as and hit return."
+      puts "Please enter the file name to save as sand hit return."
       @student_file= STDIN.gets.chomp
       save_students
       puts "\n Student information saved successfully."
