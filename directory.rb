@@ -74,6 +74,7 @@ def try_load_students
 end
 
 def print_menu
+  puts
   puts "1. Input the students"
   puts "2. Show the student"
   puts "3. Save the list to students.csv"
@@ -85,12 +86,16 @@ def process(selection)
   case selection
     when "1"
       input_students
+      puts "\n Students were added successfully."
     when "2"
       show_students
+      puts "\n Students were listed successfully."
     when "3"
       save_students
+      puts "\n Student information saved successfully."
     when "4"
       load_students
+      puts "\n Students data were loaded successfully"
     when "9"
       exit
     else
