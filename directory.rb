@@ -1,10 +1,12 @@
 
 @students = [] # an empty array accessible to all methods
 def input_students
-  puts "Please enter the names of the students"
+  puts "Please enter the names of the students,"
+  puts "and hit return to enter the cohort"
   puts "To finish, just hit return twice"
-  # get the first names
+  # get the first names and cohorts
   @name = STDIN.gets.chomp
+  @cohort = STDIN.gets.chomp
   # while the name is not empty, repeat this code
   until @name.empty? do
     # add student hash to the array
@@ -12,11 +14,12 @@ def input_students
     puts "now we have #{@students.count} students"
     # get another name from the user
     @name = STDIN.gets.chomp
+    @cohort = STDIN.gets.chomp
   end
 end
 
 def hash_to_array (array = @students)
-  array << {name: @name, cohort: :november}
+  array << {name: @name, cohort: @cohort}
 end
 
 def print_header
@@ -55,7 +58,7 @@ end
 def load_students(filename = @student_file)
   File.open(filename, "r") do |file|
     file.readlines.each do |line|
-      @name, cohort = line.chomp.split(',')
+      @name, @cohort = line.chomp.split(',')
       hash_to_array
     end
   end
