@@ -28,11 +28,16 @@ def print_header
 end
 
 def print_students_list
+  order_by_cohort
   i = 0
   until i == @students.length do
     puts "#{@students[i][:name]} (#{@students[i][:cohort]} cohort)".center(50)
     i +=1
   end
+end
+
+def order_by_cohort
+  @students.sort_by! {|students| students[:cohort]}
 end
 
 def print_footer
