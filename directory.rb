@@ -11,7 +11,11 @@ def input_students
   until @name.empty? do
     # add student hash to the array
     hash_to_array
-    puts "now we have #{@students.count} students"
+    if @students.count == 1
+      puts "now we have 1 student"
+    else
+      puts "now we have #{@students.count} students"
+    end
     # get another name from the user
     @name = STDIN.gets.chomp
     @cohort = STDIN.gets.chomp
